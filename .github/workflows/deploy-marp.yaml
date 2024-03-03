@@ -1,0 +1,149 @@
+name: marp-to-pages
+concurrency: marp-to-pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Ensure build dir exists
+        run: mkdir -p build
+
+      - name: Copy images directory (if exists)
+        run: if [[ -d img ]]; then cp -R img build/img; fi
+      
+      - name: Marp Build (README)
+        uses: docker://marpteam/marp-cli:v3.0.2
+        with:
+          args: README.md --html -o build/index.html --theme ./themes/qut.css
+        env:
+          MARP_USER: root:root
+
+      - name: Marp Build (README.pdf)
+        uses: docker://marpteam/marp-cli:v3.0.2
+        with:
+          args: README.md --allow-local-files -o build/README.pdf --theme ./themes/qut.css
+        env:
+          MARP_USER: root:root
+
+      - name: Marp Build (README.pptx)
+        uses: docker://marpteam/marp-cli:v3.0.2
+        with:
+          args: README.md --allow-local-files -o build/README.pptx --theme ./themes/qut.css
+        env:
+          MARP_USER: root:root
+
+      - name: Archive build folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: README_build
+          path: |
+            build
+
+  build:
+    needs: [prepare]
+    strategy:
+      matrix:
+        file: [ Template ]
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Ensure build dir exists
+        run: mkdir -p build
+
+      - name: Copy images directory (if exists)
+        run: if [[ -d img ]]; then cp -R img build/img; fi
+
+      - name: Marp Build (${{ matrix.file }}.html)
+        uses: docker://marpteam/marp-cli:v3.0.2
+        with:
+          args: ${{ matrix.file }}.md --html -o build/${{ matrix.file }}.html --theme ./themes/qut.css
+        env:
+          MARP_USER: root:root
+
+      - name: Marp Build (${{ matrix.file }}.pdf)
+        uses: docker://marpteam/marp-cli:v3.0.2
+        with:
+          args: ${{ matrix.file }}.md --allow-local-files -o build/${{ matrix.file }}.pdf --theme ./themes/qut.css
+        env:
+          MARP_USER: root:root
+
+      - name: Marp Build (${{ matrix.file }}.pptx)
+        uses: docker://marpteam/marp-cli:v3.0.2
+        with:
+          args: ${{ matrix.file }}.md --allow-local-files -o build/${{ matrix.file }}.pptx --theme ./themes/qut.css
+        env:
+          MARP_USER: root:root
+
+      - name: Check if docs folder exists
+        id: docs-folder-exists
+        run: bash -c "[[ -d docs ]] ; echo \"has_docs=\$?\" >> \"$GITHUB_OUTPUT\""
+
+      - name: Marp Build (docs folder, if exists)
+        if: steps.docs-folder-exists.outputs.has_docs == '0'
+        uses: docker://marpteam/marp-cli:v3.0.2
+        with:
+          args: -I docs/ -o build/docs/
+        env:
+          MARP_USER: root:root
+
+      - name: Archive build folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.file }}_build
+          path: |
+            build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [prepare, build]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: build
+
+      - name: Move all files to build folder
+        run: mv ${{ github.workspace }}/build/**/* build/
+
+      - name: Copy themes
+        run: cp -R ./themes/ build/
+
+      - name: Copy backgrounds
+        run: cp -R ./backgrounds/ build/
+
+      - name: Deploy preview
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./build/
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+
+      - name: Deploy production
+        if: ${{ github.event_name == 'push' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ./build/
+          clean-exclude: pr-preview/
