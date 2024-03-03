@@ -1,0 +1,70 @@
+/* @theme qut */
+
+@import "default";
+
+:root {
+  --qut-primary-color: #164C7B;
+  font-family: 'Arial', sans-serif;
+}
+
+
+section {
+  justify-content: start;
+}
+
+section.title {
+  color: white;
+  justify-content: center;
+}
+
+section.title h1 {
+  color: white;
+  width: 75%;
+  font-weight: bolder;
+  font-size: 54px;
+}
+
+h1 {
+  color: var(--qut-primary-color);
+}
+
+footer, header {
+  position: absolute;
+  margin: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 40px 20px 40px;
+}
+
+footer {
+  bottom: 0;
+  background: linear-gradient(45deg, #000 0%, #0D4372 40%);
+  color: white;
+  font-size: medium;
+  line-height: 1.2;
+}
+
+footer::before {
+  position: absolute;
+  content: "TEQSA Provider ID PRV12079 Australian University | CRICOS No. 00213J";
+  color: gray;
+  top: -15px;
+  font-size: 6.5px;
+}
+
+footer::after {
+  position: absolute;
+  content: "";
+  top: 15px;
+  left: 1200px;
+  width: 50px;
+  height: 50px;
+  background-image: url('https://research.qut.edu.au/designlab/wp-content/themes/qut-theme3/img/qut-logo-white.svg')
+}
+
+/* Styling page number */
+section::after {
+  color: white;
+  text-shadow: 1px 1px 0 #000;
+  width: 50%;
+}
