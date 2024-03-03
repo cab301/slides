@@ -11,13 +11,13 @@ _class: title
 
 # INSERT TITLE HERE
 
-**Organisation / Unit**
+**CAB301 - Algorithms and Complexity**
 
-Department / Faculty
+School of Computer Science, Faculty of Science
 
 ---
 <!-- 
-footer: '**Organisation / Unit**<br>Department / Faculty'
+footer: '**CAB301 - Algorithms and Complexity**<br>School of Computer Science, Faculty of Science'
 _backgroundImage: url('backgrounds/Acknowledgement.PNG')
 -->
 
