@@ -55,7 +55,7 @@ jobs:
     needs: [prepare]
     strategy:
       matrix:
-        file: [ Tutorial_1, Tutorial_2 ]
+        file: [ Tutorial_1, Tutorial_2, Tutorial_3 ]
 
     runs-on: ubuntu-latest
     permissions:
