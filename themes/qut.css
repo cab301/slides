@@ -68,3 +68,16 @@ section::after {
   text-shadow: 1px 1px 0 #000;
   width: 50%;
 }
+
+.hover-line p:hover  {
+  background-color: #b2d1ec;
+}
+
+.hover-line p {
+  margin: 0;
+}
+
+.hover-line .selected {
+  background-color: var(--qut-primary-color);
+  color: white;
+}

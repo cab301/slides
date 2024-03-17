@@ -10,7 +10,7 @@ _backgroundImage: url('backgrounds/Title.PNG')
 _class: title
  -->
 
-# Analysis of Algorithms
+# Tutorial 2: Analysis of Algorithms
 
 **CAB301 - Algorithms and Complexity**
 
