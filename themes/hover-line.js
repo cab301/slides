@@ -11,7 +11,7 @@ function load() {
           child.classList?.remove("selected");
         });
         // Add the selected class to the clicked child
-        e.target.classList?.add("selected");
+        child.classList?.add("selected");
       });
     });
   });
