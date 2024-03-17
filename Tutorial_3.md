@@ -5,6 +5,8 @@ paginate: true
 math: mathjax
 ---
 
+<script src="./themes/hover-line.js"></script>
+
 <!--
 _backgroundImage: url('backgrounds/Title.PNG')
 _class: title
@@ -68,16 +70,23 @@ int[] numbers = new int[5] { 1, 2, 3, 4, 5 };
 
 # Part A - Question 1: Stack
 
+Perform the following operations on a **Stack** with a capacity of 6:
+
 <div style="display: flex">
 
-<div style="flex: 0.5">
+<div style="flex: 0.5" class="hover-line">
 
-- **Enqueue**(4)
-- **Enqueue**(1)
-- **Enqueue**(3)
-- **Dequeue**()
-- **Enqueue**(8)
-- **Dequeue**()
+**Enqueue**(4)
+
+**Enqueue**(1)
+
+**Enqueue**(3)
+
+**Dequeue**()
+
+**Enqueue**(8)
+
+**Dequeue**()
 
 </div>
 
@@ -97,9 +106,9 @@ When **Dequeue**: Remove from the **Head**, then move the **Head** to the next i
 
 # Part B - Question 2: Binary Search
 
-<script src="./themes/hover-line.js"></script>
+<small style="margin: 0 -60px; font-size: 22px; display: flex;" >
 
-<small style="font-size: 20px" class="hover-line">
+<div style="flex: 1" class="hover-line">
 
 **ALGORITHM** BinarySearch($A[0..n-1]$, $K$)
 
@@ -121,12 +130,22 @@ $\quad$**else**
 
 $\quad\quad$$r \leftarrow m-1$
 
-</small>
+</div>
+
+<div>
 
 | Values     | 3                           | 14                          | 27                          | 31                          | 39                          | 42                          | 55                          | 70                          | 74                          | 81                          | 85                          | 93                          | 98                          |
 | ---------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- |
 | **Index** | 0                           | 1                           | 2                           | 3                           | 4                           | 5                           | 6                           | 7                           | 8                           | 9                           | 10                          | 11                          | 12                          |
 | **Cursor** | <input style="width: 15px" value="l"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px" value="r"> |
+
+**Note**: $\lfloor (l+r)/2 \rfloor$ is the rounded down value of $\frac{l+r}{2}$.
+
+For example, in the first iteration, $l=0$, $r=13$, and $m=\lfloor (0+13)/2 \rfloor = 6$.
+
+</div>
+
+</small>
 
 ---
 
