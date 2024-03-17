@@ -5,7 +5,7 @@ paginate: true
 math: mathjax
 ---
 
-<!-- 
+<!--
 _backgroundImage: url('backgrounds/Title.PNG')
 _class: title
  -->
@@ -17,7 +17,8 @@ _class: title
 School of Computer Science, Faculty of Science
 
 ---
-<!-- 
+
+<!--
 footer: '**CAB301 - Algorithms and Complexity**<br>School of Computer Science, Faculty of Science'
 -->
 
@@ -43,7 +44,7 @@ Provides operations such as **insertion**, **deletion**, **searching**, and **so
 
 - Elements stored in a sequence
 - Except for first and last, each element has a unique predecessor and successor
-- *Examples*: Array, Linked List, Stack, Queue
+- _Examples_: Array, Linked List, Stack, Queue
 
 ```csharp
 int[] numbers = new int[5] { 1, 2, 3, 4, 5 };
@@ -58,10 +59,10 @@ int[] numbers = new int[5] { 1, 2, 3, 4, 5 };
 - Confirm if the element exists
 - Get the key (e.g., index) of the element
 
-| | **Sequential Search** | **Binary Search** |
-|---|---|---|
-| **Idea** | Go through each element one by one from start | Reduce the search space by half each time |
-| **Time Complexity** | $\mathcal{O}(n)$ | $\mathcal{O}(\log n)$ |
+|                     | **Sequential Search**                         | **Binary Search**                         |
+| ------------------- | --------------------------------------------- | ----------------------------------------- |
+| **Idea**            | Go through each element one by one from start | Reduce the search space by half each time |
+| **Time Complexity** | $\mathcal{O}(n)$                              | $\mathcal{O}(\log n)$                     |
 
 ---
 
@@ -80,11 +81,11 @@ int[] numbers = new int[5] { 1, 2, 3, 4, 5 };
 
 </div>
 
-| Index | 0 | 1 | 2 | 3 | 4 | 5 |
-|---|---|---|---|---|---|---|
-| **Value** | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> |
-| **Head** | <input style="width: 15px" value="x"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> |
-| **Tail** | <input style="width: 15px" value="x"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> |
+| Index     | 0                                     | 1                           | 2                           | 3                           | 4                           | 5                           |
+| --------- | ------------------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- |
+| **Value** | <input style="width: 15px">           | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> |
+| **Head**  | <input style="width: 15px" value="x"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> |
+| **Tail**  | <input style="width: 15px" value="x"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> |
 
 </div>
 
@@ -94,7 +95,7 @@ When **Dequeue**: Remove from the **Head**, then move the **Head** to the next i
 
 ---
 
-# Part A - Question 2: Binary Search
+# Part B - Question 2: Binary Search
 
 <script src="./themes/hover-line.js"></script>
 
@@ -122,4 +123,56 @@ $\quad\quad$$r \leftarrow m-1$
 
 </small>
 
-3, 14, 27, 31, 39, 42, 55, 70, 74, 81, 85, 93, 98
+| Values     | 3                           | 14                          | 27                          | 31                          | 39                          | 42                          | 55                          | 70                          | 74                          | 81                          | 85                          | 93                          | 98                          |
+| ---------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- | --------------------------- |
+| **Index** | 0                           | 1                           | 2                           | 3                           | 4                           | 5                           | 6                           | 7                           | 8                           | 9                           | 10                          | 11                          | 12                          |
+| **Cursor** | <input style="width: 15px" value="l"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px"> | <input style="width: 15px" value="r"> |
+
+---
+
+# Part C - Question 3: Stack Implementation
+
+Implement a **Stack** in C# using an **Array**.
+
+Provides the following:
+
+- `Size`: number of elements in the stack
+- `Empty`: `true` if the stack is empty, `false` otherwise
+- `Push`: add an element to the top of the stack
+- `Pop`: remove and return the top element of the stack
+- `Peek`: return the top element of the stack without removing it
+
+Use the skeleton provided.
+
+---
+
+# Part C - Question 4: Circular Linked List
+
+Implement a **Circular Linked List** in C#, from the following interface:
+
+```csharp
+public interface IQueue {
+   int Capacity { get; }
+   int Count { get; }
+   bool IsEmpty();
+   bool IsFull();
+   void Enqueue(int value);
+   Object Dequeue();
+   Object Head();
+   void Clear();
+}
+```
+
+---
+
+# Part C - Question 5: Custom Objects
+
+Create a `CustomerCollection` class in C# that stores `Customer` objects (with `FirstName`, `LastName`, and `Phone`).
+
+Implement the following operations:
+
+- `Find(string firstName, string lastName)`: returns the associated `Phone` number
+- `Insert(string firstName, string lastName)`
+- `Insert(Customer customer)`
+- `Delete(string firstName, string lastName)`
+- `Display()`: prints all the `Customer` objects
