@@ -81,3 +81,15 @@ section::after {
   background-color: var(--qut-primary-color);
   color: white;
 }
+
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  gap: 20px;
+}
+
+
+button {
+  z-index: 10;
+}
