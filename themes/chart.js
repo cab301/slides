@@ -82,9 +82,9 @@ class BSearchTree {
           }
           else {
             let p = this.getNode(ptr.left);
-            let pp = ptr;
+            let pp = this.getNode(ptr);
             while (this.getNode(p.right)) {
-              pp = p;
+              pp = this.getNode(p);
               p = this.getNode(p.right);
             }
             ptr.value = p.value;
